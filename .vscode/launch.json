@@ -1,0 +1,41 @@
+{
+    "configurations": [
+            {
+                "type": "lldb",
+                "request": "launch",
+                "name": "Debug executable 'viewp'",
+                "cargo": {
+                    "args": [
+                        "build",
+                        "--bin=viewp",
+                        "--package=viewp"
+                    ],
+                    "filter": {
+                        "name": "viewp",
+                        "kind": "bin"
+                    }
+                },
+                "args": [],
+                "cwd": "${workspaceFolder}"
+            },
+            {
+                "type": "lldb",
+                "request": "launch",
+                "name": "Debug unit tests in executable 'viewp'",
+                "cargo": {
+                    "args": [
+                        "test",
+                        "--no-run",
+                        "--bin=viewp",
+                        "--package=viewp"
+                    ],
+                    "filter": {
+                        "name": "viewp",
+                        "kind": "bin"
+                    }
+                },
+                "args": [],
+                "cwd": "${workspaceFolder}"
+            }
+        ]
+}
