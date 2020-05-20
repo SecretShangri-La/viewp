@@ -9,29 +9,33 @@ fn t_or_f(x1: i64, ps1: &Vec<i64>) -> bool {
     true                                                                         
 }                                                                                
 
-fn prime(n1: i64) {                                                               
-    let mut ps2 = vec![2];                                                        
-    let mut x2 = 3;    
+fn prime(n1: i64) -> Result<(), Box<dyn std::error::Error>> {
+    let mut ps2 = vec![2];
+    let mut x2 = 3;
 
     if n1 <= 1 {
-        println!("NOT FOWND THIS {} FIELD",n1);        
+        Err(format!("NOT FOUND THIS {} FIELD", n1).into())
     } else {
-        while x2 <= n1 {                                                            
-            if t_or_f(x2, &ps2) {                                                   
-               ps2.push(x2);                                                       
-            }                                                                       
-            x2 += 2;                                                         
+        while x2 <= n1 {
+            if t_or_f(x2, &ps2) {
+                ps2.push(x2);
+            }
+            x2 += 2;
         }
         println!("{:?}", &ps2);
-    }                                                  
-}                                                                                   
-                                                                                    
-fn main() {                                                                         
-    let arg: String = std::env::args().nth(1).unwrap();
- //   if arg.len() == 0 {  
-//        println!("NO INSET VALUES");
-//    } else {          
-        let p: i64 = arg.parse().unwrap();                                              
-        prime(p);     
-//    }                                                                  
+        Ok(())
+    }
+}
+
+
+fn find_prime() -> Result<(), Box<dyn std::error::Error>> {
+    let arg = std::env::args().nth(1)
+        .ok_or_else(|| "NO INSET VALUES".to_string())?;
+    let p = arg.parse()?;
+    prime(p)
+}
+fn main() {
+    if let Err(e) = find_prime() {
+        eprintln!("Error: {}", e);
+    }
 }
