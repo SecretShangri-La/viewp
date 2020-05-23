@@ -1,15 +1,15 @@
-fn t_or_f(x1: i64, ps1: &Vec<i64>) -> bool {
+fn t_or_f(x1: i32, ps1: &Vec<i32>) -> bool {
     for p1 in ps1 {                   
         if p1 * p1 > x1 {                                      
              break;                                            
             } else if x1 % p1 == 0 {                               
-                false;                                     
+              return  false;                                     
         }                                                  
     }                                                          
     true                                                                         
 }                                                                                
 
-fn prime(n1: i64) -> Result<(), Box<dyn std::error::Error>> {
+fn prime(n1: i32) -> Result<(), Box<dyn std::error::Error>> {
     let mut ps2 = vec![2];
     let mut x2 = 3;
 
